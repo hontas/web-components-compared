@@ -1,6 +1,6 @@
 # Web Components Compared
 
-Same small component compared with
+Same small component build using
 
 - Native Custom Element
 - Svelte
