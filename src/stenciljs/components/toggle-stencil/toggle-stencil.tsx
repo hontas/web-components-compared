@@ -1,43 +1,21 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-const styles = `
-h2 {
-  margin: 0;
-}
-
-button {
-  all: inherit;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5em 0;
-  width: 100%;
-}
-button svg {
-  height: 1em;
-  margin-left: 0.5em;
-}
-
-[aria-expanded='true'] .vertical {
-  display: none;
-}
-`;
-
 @Component({
   tag: 'toggle-stencil',
-  scoped: true,
   shadow: true,
-  styles
+  styleUrl: 'toggle-stencil.css'
 })
 export class ToggleStencil {
+  constructor() {
+    this.toggle = this.toggle.bind(this);
+  }
+
   @Prop() summary: string;
 
-  @Prop({ mutable: true }) open: boolean;
+  @Prop() open: boolean = false;
 
-  @Listen('click', { capture: true })
-  handleClick(ev) {
-    console.log('click', ev);
+  toggle() {
+    this.open = !this.open;
   }
 
   render() {
@@ -53,7 +31,7 @@ export class ToggleStencil {
           </button>
         </h2>
 
-        <div class="content" hidden>
+        <div class="content" hidden={!this.open}>
           <slot></slot>
         </div>
       </Host>

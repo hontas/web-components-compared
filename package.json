@@ -4,9 +4,12 @@
   "description": "Web Components",
   "main": "index.js",
   "scripts": {
-    "start": "run-p build:watch build:stencil serve",
-    "build:watch": "rollup -c -w",
-    "build:stencil": "stencil build --dev --watch",
+    "start": "run-p start:rollup start:stencil serve",
+    "build": "npm run build:rollup && npm run build:stencil",
+    "start:rollup": "rollup -c -w",
+    "build:rollup": "rollup -c",
+    "start:stencil": "stencil build --dev --watch",
+    "build:stencil": "stencil build",
     "serve": "serve public"
   },
   "keywords": [],
@@ -26,7 +29,8 @@
     "rollup-plugin-svelte": "^5.1.1",
     "rollup-plugin-terser": "^5.1.2",
     "serve": "^11.2.0",
-    "svelte": "^3.12.1"
+    "svelte": "^3.12.1",
+    "workbox-build": "4.3.1"
   },
   "husky": {
     "hooks": {
@@ -45,6 +49,7 @@
   },
   "dependencies": {
     "@stencil/core": "^1.7.5",
+    "lit-element": "^2.2.1",
     "modern-css-reset": "^1.0.4"
   }
 }

@@ -6,8 +6,13 @@ yarn-debug.log*
 yarn-error.log*
 
 .DS_Store
+dist
+.stencil
+.cache
 
 public/stencil
+public/*.js
+public/*.js.map
 
 # Runtime data
 pids

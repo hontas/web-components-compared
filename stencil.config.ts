@@ -6,8 +6,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'www',
-      dir: 'public/stencil',
-      indexHtml: 'public/index.html'
+      dir: 'public/stencil'
     }
   ]
 };

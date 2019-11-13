@@ -8,7 +8,12 @@ import postcss from 'rollup-plugin-postcss';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: ['src/index.js', 'src/custom-elements/toggle-native.js', 'src/svelte/svelte.js'],
+  input: [
+    'src/index.js',
+    'src/litElement/toggle-lit.js',
+    'src/custom-elements/toggle-native.js',
+    'src/svelte/toggle-svelte.svelte'
+  ],
   output: {
     sourcemap: !production,
     format: 'esm',
