@@ -1,0 +1,78 @@
+:root {
+  --IcaButton__loader--width: 0;
+}
+
+.IcaButton {
+  font-size: 1em;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: red;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+}
+.IcaButton.disabled {
+  opacity: 0.5;
+}
+.IcaButton.disabled:focus {
+  outline: none;
+}
+.IcaButton.disabled:hover,
+.is-tabbed .IcaButton.disabled:focus {
+  background-color: whitesmoke;
+}
+
+.IcaButton--small {
+  padding: 0.5rem;
+}
+
+.IcaButton--secondary {
+  background-color: gray;
+  color: black;
+}
+.IcaButton--secondary:hover,
+.is-tabbed .IcaButton--secondary:focus {
+  background-color: darkgray;
+}
+
+.IcaButton--buy {
+  background-color: red;
+}
+.IcaButton--buy:hover,
+.is-tabbed .IcaButton--buy:focus {
+  background-color: darkred;
+}
+
+.IcaButton--disabled {
+  background-color: lightgray;
+  color: gray;
+  cursor: unset;
+}
+.IcaButton--disabled:hover,
+.is-tabbed .IcaButton--disabled:focus {
+  background-color: gray;
+}
+
+.lIcaButton__label {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.IcaButton__label {
+  overflow: hidden;
+}
+.IcaButton__label--inactive {
+  visibility: hidden;
+}
+
+.IcaButton__loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}

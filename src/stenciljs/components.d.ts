@@ -10,6 +10,56 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface ButtonStencil {
+    /**
+    * Decides the ariaLabel
+    */
+    'ariaLabel': string;
+    /**
+    * Decides the Id a unique id will be created
+    */
+    'componentId': string;
+    /**
+    * Disabled button
+    */
+    'disabled': boolean;
+    /**
+    * Decides if you want an loader on the button
+    */
+    'hasLoader': boolean;
+    /**
+    * Decides if the button is loading
+    */
+    'loading': boolean;
+    /**
+    * loading state
+    */
+    'messageHasLoaded': string;
+    /**
+    * loading state
+    */
+    'messageLoading': string;
+    /**
+    * Decides the name
+    */
+    'name': string;
+    /**
+    * Decides if the button should be a small button
+    */
+    'small': boolean;
+    /**
+    * the button text
+    */
+    'text': string;
+    /**
+    * Decides the type
+    */
+    'type': string;
+    /**
+    * Variation of the button Available variations are primary, secondary, buy
+    */
+    'variation': string;
+  }
   interface ToggleStencil {
     'open': boolean;
     'summary': string;
@@ -19,23 +69,85 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLButtonStencilElement extends Components.ButtonStencil, HTMLStencilElement {}
+  var HTMLButtonStencilElement: {
+    prototype: HTMLButtonStencilElement;
+    new (): HTMLButtonStencilElement;
+  };
+
   interface HTMLToggleStencilElement extends Components.ToggleStencil, HTMLStencilElement {}
   var HTMLToggleStencilElement: {
     prototype: HTMLToggleStencilElement;
     new (): HTMLToggleStencilElement;
   };
   interface HTMLElementTagNameMap {
+    'button-stencil': HTMLButtonStencilElement;
     'toggle-stencil': HTMLToggleStencilElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface ButtonStencil {
+    /**
+    * Decides the ariaLabel
+    */
+    'ariaLabel'?: string;
+    /**
+    * Decides the Id a unique id will be created
+    */
+    'componentId'?: string;
+    /**
+    * Disabled button
+    */
+    'disabled'?: boolean;
+    /**
+    * Decides if you want an loader on the button
+    */
+    'hasLoader'?: boolean;
+    /**
+    * Decides if the button is loading
+    */
+    'loading'?: boolean;
+    /**
+    * loading state
+    */
+    'messageHasLoaded'?: string;
+    /**
+    * loading state
+    */
+    'messageLoading'?: string;
+    /**
+    * Decides the name
+    */
+    'name'?: string;
+    /**
+    * OnClick event
+    */
+    'onClickHandler'?: (event: CustomEvent<any>) => void;
+    /**
+    * Decides if the button should be a small button
+    */
+    'small'?: boolean;
+    /**
+    * the button text
+    */
+    'text': string;
+    /**
+    * Decides the type
+    */
+    'type'?: string;
+    /**
+    * Variation of the button Available variations are primary, secondary, buy
+    */
+    'variation'?: string;
+  }
   interface ToggleStencil {
     'open'?: boolean;
     'summary'?: string;
   }
 
   interface IntrinsicElements {
+    'button-stencil': ButtonStencil;
     'toggle-stencil': ToggleStencil;
   }
 }
@@ -46,6 +158,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'button-stencil': LocalJSX.ButtonStencil & JSXBase.HTMLAttributes<HTMLButtonStencilElement>;
       'toggle-stencil': LocalJSX.ToggleStencil & JSXBase.HTMLAttributes<HTMLToggleStencilElement>;
     }
   }
