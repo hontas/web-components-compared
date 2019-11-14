@@ -2,6 +2,7 @@
 <script type="module" src="./toggle-lit.js"></script>
 <script type="module" src="./toggle-native.js"></script>
 <script type="module" src="./toggle-svelte.js"></script>
+<script type="module" src="./button-svelte.js"></script>
 <script type="module" src="./stencil/build/stencil.esm.js"></script>
 
 <!DOCTYPE html>
@@ -11,12 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>template</title>
+    <style>
+      button-svelte {
+        --button-svelte-background-color: red;
+      }
+    </style>
   </head>
   <body>
     <h1>Web Components</h1>
 
     <hr />
-    <h2>Custom Element</h2>
+    <h2>Toggle</h2>
+
+    <hr />
+    <h3>Custom Element</h3>
 
     <toggle-section summary="Lorem ipsum" x>
       <p>
@@ -32,7 +41,7 @@
     </toggle-section>
 
     <hr />
-    <h2>Svelte</h2>
+    <h3>Svelte</h3>
 
     <toggle-svelte summary="Dollar sit amet">
       <p>
@@ -48,7 +57,14 @@
     </toggle-svelte>
 
     <hr />
-    <h2>Stencil.js</h2>
+
+    <button-svelte text="Klicka på mig">
+      <p slot="first">first</p>
+      <p slot="last">last</p>
+    </button-svelte>
+
+    <hr />
+    <h3>Stencil.js</h3>
 
     <toggle-stencil summary="Elit consequat">
       <p>
@@ -64,7 +80,7 @@
     </toggle-stencil>
 
     <hr />
-    <h2>LitElements</h2>
+    <h3>LitElements</h3>
 
     <toggle-lit summary="Elit consequat">
       <p>
@@ -78,5 +94,14 @@
         commodo amet quis.
       </p>
     </toggle-lit>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const svelteBtn = document.querySelector('button-svelte');
+        svelteBtn.addEventListener('click', (evt) => {
+          console.log('evt', evt);
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -6,14 +9,11 @@ import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 
 const production = !process.env.ROLLUP_WATCH;
+const svelteDir = 'src/svelte';
+const svelteFiles = fs.readdirSync(path.resolve(__dirname, svelteDir)).map((file) => `${svelteDir}/${file}`);
 
 export default {
-  input: [
-    'src/index.js',
-    'src/litElement/toggle-lit.js',
-    'src/custom-elements/toggle-native.js',
-    'src/svelte/toggle-svelte.svelte'
-  ],
+  input: ['src/index.js', 'src/litElement/toggle-lit.js', 'src/custom-elements/toggle-native.js', ...svelteFiles],
   output: {
     sourcemap: !production,
     format: 'esm',
