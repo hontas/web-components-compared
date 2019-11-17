@@ -28,6 +28,7 @@
     "@storybook/addon-notes": "^5.2.6",
     "@storybook/addons": "^5.2.6",
     "@storybook/svelte": "^5.2.6",
+    "@storybook/theming": "^5.2.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/svelte": "^1.9.0",
     "babel-loader": "^8.0.6",
