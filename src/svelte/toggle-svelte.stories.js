@@ -2,9 +2,10 @@ import Component from './toggle-svelte.svelte';
 import notes from './toggle-svelte.md';
 
 export default {
-  title: 'Components|Svelte/Toggle',
+  title: 'Components|Toggle',
   parameters: {
-    notes
+    notes,
+    jest: ['toggle-svelte.test.js']
   }
 };
 

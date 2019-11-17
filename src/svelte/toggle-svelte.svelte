@@ -9,7 +9,7 @@
 
 <svelte:options tag="toggle-svelte" />
 <h2>
-  <button aria-expanded={open} on:click={toggle}>
+  <button aria-expanded={open} on:click={toggle} data-testid="toggle-svelte-button">
     <span class="summary">{summary}</span>
     <svg aria-hidden="true" focusable="false" viewBox="0 0 10 10" fill="currentColor">
       <rect class="vertical" height="8" width="2" y="1" x="4" />
@@ -18,7 +18,7 @@
   </button>
 </h2>
 
-<div class="content" hidden={!open}>
+<div class="content" data-testid="toggle-svelte-content" hidden={!open}>
   <slot>This will be replaced with whatever you put in</slot>
 </div>
 

@@ -2,7 +2,7 @@
   // import { createEventDispatcher } from 'svelte';
   // const dispatch = createEventDispatcher();
   // const clickHandler = (evt) => dispatch('click', evt);
-  import './loader-svelte.svelte';
+  import Loader from './loader-svelte.svelte';
 
   export let disabled = false;
   export let variation = 'primary';

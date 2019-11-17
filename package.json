@@ -14,7 +14,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch"
+    "test:generate-output": "npm run test -- --json --outputFile=.jest-test-results.json",
+    "test:watch": "npm run test:generate-output -- --watch"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-jest": "^5.2.6",
     "@storybook/addon-links": "^5.2.6",
     "@storybook/addon-notes": "^5.2.6",
     "@storybook/addons": "^5.2.6",

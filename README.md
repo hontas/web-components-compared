@@ -3,7 +3,8 @@
 ```shell
 npm install
 npm start
-npm test
+# run test in watch mode & create data for storybook
+npm run test:watch
 npm run storybook
 ```
 

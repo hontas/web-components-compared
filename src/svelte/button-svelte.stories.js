@@ -4,9 +4,10 @@ import Component from './button-svelte.svelte';
 import notes from './button-svelte.md';
 
 export default {
-  title: 'Components|Svelte/Button',
+  title: 'Components|Button',
   parameters: {
-    notes
+    notes,
+    jest: ['button-svelte.test.js']
   }
 };
 
