@@ -1,5 +1,12 @@
 # Web Components Compared
 
+```shell
+npm install
+npm start
+npm test
+npm run storybook
+```
+
 Same small component build using
 
 - Native Custom Element
