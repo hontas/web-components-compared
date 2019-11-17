@@ -43,5 +43,5 @@
 </h2>
 
 <div class="content" hidden={!open}>
-  <slot />
+  <slot>This will be replaced with whatever you put in</slot>
 </div>

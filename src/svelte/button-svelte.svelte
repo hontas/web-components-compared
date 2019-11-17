@@ -1,7 +1,8 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-
-  const dispatch = createEventDispatcher();
+  // import { createEventDispatcher } from 'svelte';
+  // const dispatch = createEventDispatcher();
+  // const clickHandler = (evt) => dispatch('click', evt);
+  import './loader-svelte.svelte';
 
   export let disabled = false;
   export let variation = 'primary';
@@ -23,10 +24,8 @@
       .join(' ');
 
   $: modifiers = getClasses({
-    btn: true,
     'btn--primary': !disabled && (!variation || variation === `primary`),
     'btn--secondary': !disabled && variation === `secondary`,
-    'btn--disabled': disabled,
     'btn--small': small,
     'btn--buy': !disabled && variation === `buy`
   });
@@ -35,8 +34,6 @@
     'label--inactive': hasLoader && loading,
     label: true
   });
-
-  const clickHandler = (evt) => dispatch('click', evt);
 </script>
 
 <style>
@@ -45,10 +42,34 @@
   }
   button {
     border: 0;
-    background: var(--button-svelte-background-color);
+    background: var(--button-svelte-background-color, darkred);
     color: white;
+    cursor: pointer;
     padding: 1em;
   }
+
+  .btn--primary {
+    background-color: darkgreen;
+  }
+
+  .btn--secondary {
+    background-color: blueviolet;
+  }
+
+  .btn--buy {
+    background-color: teal;
+  }
+
+  .btn--small {
+    padding: 0.5em 1em;
+  }
+
+  button[disabled] {
+    background-color: darkgray;
+    color: whitesmoke;
+    cursor: not-allowed;
+  }
+
   .label {
     display: grid;
     grid-auto-flow: column;
@@ -58,9 +79,9 @@
 
 <svelte:options tag="button-svelte" />
 
-<button class={modifiers} {disabled} {type} {name} {id} aria-label={ariaLabel} on:click={clickHandler}>
-  <div class="loader">
-    <ica-loader {messageHasLoaded} {messageLoading} {loading} />
+<button class={modifiers} {disabled} {type} {name} {id} aria-label={ariaLabel} on:click data-testid="button-svelte">
+  <div class="loader" hidden={!hasLoader}>
+    <loader-svelte {messageHasLoaded} {messageLoading} {loading} />
   </div>
   <div class={labelModifiers}>
     <slot name="first" />

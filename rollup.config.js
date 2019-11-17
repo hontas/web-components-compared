@@ -8,9 +8,14 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 
+const svelteConfig = require('./svelte.config');
+
 const production = !process.env.ROLLUP_WATCH;
 const svelteDir = 'src/svelte';
-const svelteFiles = fs.readdirSync(path.resolve(__dirname, svelteDir)).map((file) => `${svelteDir}/${file}`);
+const svelteFiles = fs
+  .readdirSync(path.resolve(__dirname, svelteDir))
+  .filter((file) => file.endsWith('.svelte'))
+  .map((file) => `${svelteDir}/${file}`);
 
 export default {
   input: ['src/index.js', 'src/litElement/toggle-lit.js', 'src/custom-elements/toggle-native.js', ...svelteFiles],
@@ -27,7 +32,7 @@ export default {
     svelte({
       dev: !production,
       // Tell the compiler to output a custom element.
-      customElement: true
+      ...svelteConfig
     }),
     resolve(),
     commonjs(),
