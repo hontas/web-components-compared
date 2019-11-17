@@ -36,6 +36,19 @@
   });
 </script>
 
+<svelte:options tag="button-svelte" />
+
+<button class={modifiers} {disabled} {type} {name} {id} aria-label={ariaLabel} on:click data-testid="button-svelte">
+  <div class="loader" hidden={!hasLoader}>
+    <loader-svelte {messageHasLoaded} {messageLoading} {loading} />
+  </div>
+  <div class={labelModifiers}>
+    <slot name="first" />
+    <span class="text">{text}</span>
+    <slot name="last" />
+  </div>
+</button>
+
 <style>
   :host {
     --button-svelte-background-color: darkred;
@@ -76,16 +89,3 @@
     column-gap: 0.5em;
   }
 </style>
-
-<svelte:options tag="button-svelte" />
-
-<button class={modifiers} {disabled} {type} {name} {id} aria-label={ariaLabel} on:click data-testid="button-svelte">
-  <div class="loader" hidden={!hasLoader}>
-    <loader-svelte {messageHasLoaded} {messageLoading} {loading} />
-  </div>
-  <div class={labelModifiers}>
-    <slot name="first" />
-    <span class="text">{text}</span>
-    <slot name="last" />
-  </div>
-</button>
