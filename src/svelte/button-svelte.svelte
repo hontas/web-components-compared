@@ -1,54 +1,91 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-
-  const dispatch = createEventDispatcher();
+  // import { createEventDispatcher } from 'svelte';
+  // const dispatch = createEventDispatcher();
+  // const clickHandler = (evt) => dispatch('click', evt);
+  import Loader from './loader-svelte.svelte';
 
   export let disabled = false;
   export let variation = 'primary';
   export let small = false;
-  export let type = 'type';
-  export let name = 'name';
-  export let componentId = '';
+  export let type = 'button';
+  export let name = '';
+  export let id = '';
   export let ariaLabel = '';
   export let hasLoader = false;
   export let loading = false;
-  export let text;
+  export let text = '';
   export let messageHasLoaded = '';
   export let messageLoading = '';
 
-  $: modifiers = () => ({
-    'IcaButton--primary': !disabled && (!variation || variation === `primary`),
-    'IcaButton--secondary': !disabled && variation === `secondary`,
-    'IcaButton--buy': !disabled && variation === `buy`,
-    'IcaButton--disabled': disabled,
-    'IcaButton--small': small,
-    IcaButton: true
-  });
-  $: labelModifiers = () => ({
-    'IcaButton__label--inactive': hasLoader && loading,
-    IcaButton__label: true,
-    lIcaButton__label: true
+  const getClasses = (obj) =>
+    Object.entries(obj)
+      .filter(([, isTruthy]) => isTruthy)
+      .map(([key]) => key)
+      .join(' ');
+
+  $: modifiers = getClasses({
+    'btn--primary': !disabled && (!variation || variation === `primary`),
+    'btn--secondary': !disabled && variation === `secondary`,
+    'btn--small': small,
+    'btn--buy': !disabled && variation === `buy`
   });
 
-  const clickHandler = (evt) => dispatch('click', evt);
+  $: labelModifiers = getClasses({
+    'label--inactive': hasLoader && loading,
+    label: true
+  });
 </script>
+
+<style>
+  :host {
+    --button-svelte-background-color: darkred;
+  }
+  button {
+    border: 0;
+    background: var(--button-svelte-background-color, darkred);
+    color: white;
+    cursor: pointer;
+    padding: 1em;
+  }
+
+  .btn--primary {
+    background-color: darkgreen;
+  }
+
+  .btn--secondary {
+    background-color: blueviolet;
+  }
+
+  .btn--buy {
+    background-color: teal;
+  }
+
+  .btn--small {
+    padding: 0.5em 1em;
+  }
+
+  button[disabled] {
+    background-color: darkgray;
+    color: whitesmoke;
+    cursor: not-allowed;
+  }
+
+  .label {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 0.5em;
+  }
+</style>
 
 <svelte:options tag="button-svelte" />
 
-<button
-  class={modifiers()}
-  disabled={this.disabled}
-  type={this.type}
-  name={this.name}
-  id={this.componentId}
-  aria-label={this.ariaLabel}
-  onClick={this._clickHandler}>
-  <div class="IcaButton__loader">
-    <ica-loader messageHasLoaded={this.messageHasLoaded} messageLoading={this.messageLoading} loading={this.loading} />
+<button class={modifiers} {disabled} {type} {name} {id} aria-label={ariaLabel} on:click data-testid="button-svelte">
+  <div class="loader" hidden={!hasLoader}>
+    <loader-svelte {messageHasLoaded} {messageLoading} {loading} />
   </div>
-  <div class={this._labelModifiers()}>
+  <div class={labelModifiers}>
     <slot name="first" />
-    <span class="IcaButton__text">{this.text}</span>
+    <span class="text">{text}</span>
     <slot name="last" />
   </div>
 </button>

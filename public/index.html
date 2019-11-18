@@ -2,6 +2,7 @@
 <script type="module" src="./toggle-lit.js"></script>
 <script type="module" src="./toggle-native.js"></script>
 <script type="module" src="./toggle-svelte.js"></script>
+<script type="module" src="./button-svelte.js"></script>
 <script type="module" src="./stencil/build/stencil.esm.js"></script>
 
 <!DOCTYPE html>
@@ -11,6 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>template</title>
+    <style>
+      button-svelte {
+        --button-svelte-background-color: red;
+      }
+    </style>
   </head>
   <body>
     <h1>Web Components</h1>
@@ -51,6 +57,14 @@
     </toggle-svelte>
 
     <hr />
+
+    <button-svelte text="Klicka på mig">
+      <p slot="first">first</p>
+      <p slot="last">last</p>
+    </button-svelte>
+
+    <hr />
+
     <h3>Stencil.js</h3>
 
     <toggle-stencil summary="Elit consequat">
@@ -88,5 +102,14 @@
     <button-stencil text="Press me">
       Slotted content
     </button-stencil>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const svelteBtn = document.querySelector('button-svelte');
+        svelteBtn.addEventListener('click', (evt) => {
+          console.log('evt', evt);
+        });
+      });
+    </script>
   </body>
 </html>

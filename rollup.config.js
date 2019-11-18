@@ -1,3 +1,4 @@
+import glob from 'glob';
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -5,15 +6,13 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 
+const svelteConfig = require('./svelte.config');
+
 const production = !process.env.ROLLUP_WATCH;
+const svelteFiles = glob.sync('src/svelte/**/*.svelte');
 
 export default {
-  input: [
-    'src/index.js',
-    'src/litElement/toggle-lit.js',
-    'src/custom-elements/toggle-native.js',
-    'src/svelte/toggle-svelte.svelte'
-  ],
+  input: ['src/index.js', 'src/litElement/toggle-lit.js', 'src/custom-elements/toggle-native.js', ...svelteFiles],
   output: {
     sourcemap: !production,
     format: 'esm',
@@ -26,8 +25,7 @@ export default {
     }),
     svelte({
       dev: !production,
-      // Tell the compiler to output a custom element.
-      customElement: true
+      ...svelteConfig
     }),
     resolve(),
     commonjs(),

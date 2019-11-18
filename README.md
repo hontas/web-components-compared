@@ -1,5 +1,13 @@
 # Web Components Compared
 
+```shell
+npm install
+npm start
+# run test in watch mode & create data for storybook
+npm run test:watch
+npm run storybook
+```
+
 Same small component build using
 
 - Native Custom Element
