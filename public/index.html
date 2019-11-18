@@ -19,15 +19,9 @@
     </style>
   </head>
   <body>
-    <h1>Web Components</h1>
+    <h1>Web Components Compared</h1>
 
-    <hr />
-    <h2>Toggle section</h2>
-
-    <hr />
-    <h3>Custom Element</h3>
-
-    <toggle-section summary="Lorem ipsum" x>
+    <toggle-section summary="Custom Element">
       <p>
         Elit consequat sit ex non dolor veniam enim officia eu tempor sit. Fugiat excepteur sunt cillum amet culpa ex.
         Pariatur Lorem ullamco aliquip cupidatat dolore enim enim veniam ea eu laboris sit. Cillum minim dolor ullamco
@@ -41,49 +35,35 @@
     </toggle-section>
 
     <hr />
-    <h3>Svelte</h3>
 
-    <toggle-svelte summary="Dollar sit amet">
+    <toggle-svelte summary="Svelte">
       <p>
         Elit consequat sit ex non dolor veniam enim officia eu tempor sit. Fugiat excepteur sunt cillum amet culpa ex.
         Pariatur Lorem ullamco aliquip cupidatat dolore enim enim veniam ea eu laboris sit. Cillum minim dolor ullamco
         commodo amet quis.
       </p>
-      <p>
-        Elit consequat sit ex non dolor veniam enim officia eu tempor sit. Fugiat excepteur sunt cillum amet culpa ex.
-        Pariatur Lorem ullamco aliquip cupidatat dolore enim enim veniam ea eu laboris sit. Cillum minim dolor ullamco
-        commodo amet quis.
-      </p>
+      <button-svelte text="Klicka på mig">
+        <p slot="first">first</p>
+        <p slot="last">last</p>
+      </button-svelte>
     </toggle-svelte>
 
     <hr />
 
-    <button-svelte text="Klicka på mig">
-      <p slot="first">first</p>
-      <p slot="last">last</p>
-    </button-svelte>
-
-    <hr />
-
-    <h3>Stencil.js</h3>
-
-    <toggle-stencil summary="Elit consequat">
+    <toggle-stencil summary="Stencil.js">
       <p>
         Elit consequat sit ex non dolor veniam enim officia eu tempor sit. Fugiat excepteur sunt cillum amet culpa ex.
         Pariatur Lorem ullamco aliquip cupidatat dolore enim enim veniam ea eu laboris sit. Cillum minim dolor ullamco
         commodo amet quis.
       </p>
-      <p>
-        Elit consequat sit ex non dolor veniam enim officia eu tempor sit. Fugiat excepteur sunt cillum amet culpa ex.
-        Pariatur Lorem ullamco aliquip cupidatat dolore enim enim veniam ea eu laboris sit. Cillum minim dolor ullamco
-        commodo amet quis.
-      </p>
+      <button-stencil text="Press me">
+        Slotted content
+      </button-stencil>
     </toggle-stencil>
 
     <hr />
-    <h3>LitElements</h3>
 
-    <toggle-lit summary="Elit consequat">
+    <toggle-lit summary="LitElements">
       <p>
         Elit consequat sit ex non dolor veniam enim officia eu tempor sit. Fugiat excepteur sunt cillum amet culpa ex.
         Pariatur Lorem ullamco aliquip cupidatat dolore enim enim veniam ea eu laboris sit. Cillum minim dolor ullamco
@@ -97,11 +77,6 @@
     </toggle-lit>
 
     <hr />
-    <h2>Button</h2>
-
-    <button-stencil text="Press me">
-      Slotted content
-    </button-stencil>
 
     <script>
       window.addEventListener('DOMContentLoaded', () => {
